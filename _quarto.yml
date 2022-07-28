@@ -2,18 +2,44 @@ project:
   type: website
 
 website:
-  title: "PhillyRUG"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  page-navigation: true
+  title: "Philadelphia R User Group"
+  site-url: https://www.phillyrug.org
+
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    left: "&copy; CC-By Philadelphia R User Group Organizers, Cory Cutsail & Bomi Hong (2022)."
+
+  sidebar:
+    logo: images/openscapes_hex.png
+    align: center
+    tools:
+      - icon: meetup
+        href: https://www.meetup.com/meetup-group-rfxisjyh/
+        text: "PhillyRUG Meetup"
+      - icon: github
+        href: https://github.com/PhillyRUG/
+        text: "PhillyRUG Github"
+      - icon: twitter
+        href: https://twitter.com/PhillyRUG
+        text: "PhillyRUG Twitter"
+
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - href: "index.qmd"
+        text: Welcome
 
 format:
   html:
-    theme: flatly
+    theme:
+      light: cosmo
+      dark: [cosmo, theme-dark.scss]
+    code-background: true
+    code-copy: true
     css: styles.css
     toc: true
 
-editor: visual
-
+filters:
+  - quarto
