@@ -1,7 +1,6 @@
 ---
 title: "Journal Club Notes: Probabilistic Weather Forecasting in R"
 author: "Cory Cutsail, PhillyRUG"
-editor: visual
 ---
 
 Two R packages introduced: `ensembleMBA` and `ProbForecastGOP`.
