@@ -26,10 +26,17 @@ website:
 
     style: "docked"
     search: true
-    collapse-level: 1
+    collapse-level: 2
     contents:
       - href: "index.qmd"
         text: Welcome
+      - href: 'discord/discord.qmd'
+        text: Discord
+      - section: Journal Club
+        contents:
+          - journal_club/prob_weather_fc.qmd
+
+
 
 format:
   html:

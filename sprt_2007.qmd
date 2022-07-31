@@ -1,0 +1,5 @@
+---
+title: "JC Support: Combining Spatial Statistical and Ensemble Information in Probabilistic Weather Forecasts"
+author: "Cory Cutsail, PhillyRUG"
+editor: visual
+---
