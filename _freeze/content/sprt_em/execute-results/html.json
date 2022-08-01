@@ -1,0 +1,14 @@
+{
+  "hash": "8e4aadf8a31c6ea952270e8bb0eb748c",
+  "result": {
+    "markdown": "---\ntitle: \"JC: Probabilistic Weather Forecasting Supplemental - EM\"\nauthor: \"Cory Cutsail, PhillyRUG\"\neditor: visual\n---\n\n::: {.cell}\n\n```{.r .cell-code}\n    2*2\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 4\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
