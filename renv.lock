@@ -52,6 +52,14 @@
         "rlang"
       ]
     },
+    "chron": {
+      "Package": "chron",
+      "Version": "2.3-57",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "fa640a982e1e726d5e0498361dab220a",
+      "Requirements": []
+    },
     "digest": {
       "Package": "digest",
       "Version": "0.6.29",
@@ -59,6 +67,16 @@
       "Repository": "CRAN",
       "Hash": "cf6b206a045a684728c3267ef7596190",
       "Requirements": []
+    },
+    "ensembleBMA": {
+      "Package": "ensembleBMA",
+      "Version": "5.1.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a42ad6334ad49088c830f8d725081b52",
+      "Requirements": [
+        "chron"
+      ]
     },
     "evaluate": {
       "Package": "evaluate",
