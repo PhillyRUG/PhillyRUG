@@ -1,0 +1,14 @@
+{
+  "hash": "75ad39073c6f41447ea7c6917a1dc7b2",
+  "result": {
+    "markdown": "---\nformat: \n  html\n---\n\n::: {.cell}\n<iframe src=\"https://titanembeds.com/embed/1003133818309464074\" width=\"175%\" height=\"1200px\" data-external=\"1\"></iframe>\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

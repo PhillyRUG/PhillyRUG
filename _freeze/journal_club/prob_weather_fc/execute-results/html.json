@@ -1,0 +1,14 @@
+{
+  "hash": "988f75b1e9e980d789838dac9c7811cf",
+  "result": {
+    "markdown": "---\ntitle: \"Journal Club Notes: Probabilistic Weather Forecasting in R\"\nauthor: \"Cory Cutsail, PhillyRUG\"\neditor: visual\n---\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

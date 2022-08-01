@@ -50,3 +50,6 @@ format:
 
 filters:
   - quarto
+
+execute:
+  freeze: auto

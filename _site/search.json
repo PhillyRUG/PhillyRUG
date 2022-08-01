@@ -224,39 +224,11 @@
     "text": "Cohort Planning using GitHub Issues\nAs we get further along with planning the Cohort, we’ll be using GitHub Issues to coordinate together. Depending on the Cohort, we’ll use the cohort-planning repo, or potentially the Cohort repo itself. We often pin “quicklinks” so that we can easily navigate to the docs we need when we need them when leading Cohort Calls!\n\n\n\n\n\nThe cohort-planning repository is one of the repositories included in the Openscapes Organizational-level Projects board that helps us organize our “todo” items. We are getting into the rhythm of using Project Boards and can set up additional ones too."
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Openscapes Approach Guide",
-    "section": "Welcome",
-    "text": "Welcome\nWelcome to the Openscapes Approach Guide! This is an open and iterating guide to document our process and onboard folks to the Openscapes approach."
-  },
-  {
-    "objectID": "index.html#about-openscapes",
-    "href": "index.html#about-openscapes",
-    "title": "PhillyRUG",
-    "section": "About Openscapes",
-    "text": "About Openscapes\nOpenscapes is an approach for doing better science in less time. We offer mentorship, coaching, teaching, and community organizing centered around open data science: we help teams develop collaborative practices that are more reproducible, transparent, inclusive, and kind.\nOpenscapes Champions is an open data science mentorship program for science teams. We support researchers to reimagine data analysis & stewardship as a collaborative effort, develop modern skills that are of immediate value to them, and cultivate collaborative and inclusive research communities. We work with academic, government, and non-profit research teams who become part of the open science movement as Champions empowered with new skillsets and mindsets for modern data-intensive science."
-  },
-  {
-    "objectID": "index.html#about-this-guide",
-    "href": "index.html#about-this-guide",
-    "title": "PhillyRUG",
-    "section": "About This Guide",
-    "text": "About This Guide\nWe’ve been growing Openscapes since founding it in 2018. This is our attempt to codify our approach so that we can onboard others as we grow. Aligned with our values for kinder, open science, we are developing it openly and designing it so that you can also use the guide to use the Openscapes Approach on your own. We encourage anyone to use and “fork” it to make it your own (particularly as it’s a bit more developed!).\nWe complete a full revolution of our Flywheel each time we lead the Champions Program.\n\n\n\nOpenscapes flywheel shows 6 points around a hexagon: Develop, Invest, Attract, Deliver, Transform, Inspire\n\n\nEach turn of the flywheel delivers the Champions program for a Cohort of research teams so that they can begin transforming their workflows towards kinder, inclusive open science and inspire their broader communities. We support this delivery and transformation through developing mentor teams with inclusive facilitation skills, by investing in the Champions curriculum as we learn new software and inclusive practices and to meet specific Cohort needs, and by attracting research teams through storytelling (talks, blogs, publications), community engagement, and artwork to welcome more folks to the open science movement.\nThis book will ultimately describe the Openscapes Approach as all parts of our Flywheel, but we are beginning our focus with developing mentors and delivering the Champions Program.\n\nBuilt with Quarto\nWe’re collaboratively making the Openscapes Approach Guide with Quarto. Quarto builds from what RStudio learned from RMarkdown, which we use to openly develop and publish all Openscapes websites, books, and blogs. Quarto makes collaborating to create technical documentation streamlined because we work in plain text documents that can have executable code (Python, R) and are rendered natively using Jupyter and Knitr engines. We are gradually converting to build all our materials with Quarto."
-  },
-  {
-    "objectID": "index.html#citation",
-    "href": "index.html#citation",
-    "title": "PhillyRUG",
-    "section": "Citation",
-    "text": "Citation\nAll material in the Openscapes Approach Guide is available under a CC-BY 4.0 licence.\nPlease cite this guide as:\nThe Openscapes Core Team, Lowndes & Robinson (2021). Openscapes Approach Guide (Version v0.0.1). https://openscapes.org/approach-guide.\n\n\n\nOpenscapes artwork by Allison Horst"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "journal_club/sprt_em.html",
+    "href": "journal_club/sprt_em.html",
+    "title": "JC: Probabilistic Weather Forecasting Supplemental - EM",
     "section": "",
-    "text": "1 + 1\n\n[1] 2"
+    "text": "2*2\n\n[1] 4"
   },
   {
     "objectID": "index.html",
@@ -266,24 +238,10 @@
     "text": "to the Philadelphia R User Group’s website! This page is still under construction, but we plan to host videos and recap our events here."
   },
   {
-    "objectID": "discord/discord.html#slide-title",
-    "href": "discord/discord.html#slide-title",
-    "title": "discord",
-    "section": "Slide Title",
-    "text": "Slide Title"
-  },
-  {
-    "objectID": "journal_club/prob_weather_fc.html",
-    "href": "journal_club/prob_weather_fc.html",
-    "title": "Journal Club Notes: Probabilistic Weather Forecasting in R",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "ensebmbleBMA:\n\nImplements geostatistical output perturbation method\nUse mixture distributions where components \\(X \\iff \\text{ensemble members}\\)\n\\(X\\sim D_j\\)\n\\(j\\in\\{\\text{temp,precip,wind speed,...}\\}\\)\n\nProbForecastGOP:\n\nGeostatistical methods to produce prob. forecasts of entire weather fields based on a single numerical forecast on a spatial grid\nPackage removed from CRAN … we can talk about the math but we’ll skip the code discussion\n\nLoading ensembleBMA\n\n\nLoading required package: chron\n\n\nParameter estimation done via EM (fairly simple algo .. we can pause here but the Wikipedia article covers it nicely).\nData used for training must be an ensembleBMA::ensembleData object. The authors use data from Berrocal et al, 2007 to illustrate the construction of an ensembleData object.\n\n\nWarning in ensembleData(forecasts = srft[, members], dates = srft$date, :\ninitialization time not specified"
-  },
-  {
-    "objectID": "discord/discord.html",
-    "href": "discord/discord.html",
-    "title": "Philadelphia R User Group",
-    "section": "",
-    "text": "knitr::include_url({\"https://titanembeds.com/embed/1003133818309464074\"},height='1200px')"
+    "text": "1 + 1\n\n[1] 2"
   }
 ]
