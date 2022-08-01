@@ -58,6 +58,7 @@ ul.task-list{list-style: none;}
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -154,11 +155,32 @@ ul.task-list{list-style: none;}
 
 </header>
 
+<p>Two R packages introduced: <code>ensembleMBA</code> and <code>ProbForecastGOP</code>.</p>
+<p><code>ensebmbleBMA</code>:</p>
+<ul>
+<li><p>Implements geostatistical output perturbation method</p></li>
+<li><p>Use mixture distributions where components <span class="math inline">\(X \iff \text{ensemble members}\)</span></p></li>
+<li><p><span class="math inline">\(X\sim D_j\)</span></p></li>
+<li><p><span class="math inline">\(j\in\{\text{temp,precip,wind speed,...}\}\)</span></p></li>
+</ul>
+<p><code>ProbForecastGOP</code>:</p>
+<ul>
+<li><p>Geostatistical methods to produce prob. forecasts of entire weather fields based on a single numerical forecast on a spatial grid</p></li>
+<li><p>Package removed from CRAN … we can talk about the math but we’ll skip the code discussion</p></li>
+</ul>
+<p>Loading <code>ensembleBMA</code></p>
 <div class="cell">
-
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: chron</code></pre>
 </div>
+</div>
+<p>Parameter estimation done via EM (fairly simple algo .. we can pause here but the <a href="https://en.wikipedia.org/wiki/Expectation–maximization_algorithm">Wikipedia article</a> covers it nicely).</p>
+<p>Data used for training must be an <code>ensembleBMA::ensembleData</code> object. The authors use data from <a href="https://sites.stat.washington.edu/raftery/Research/PDF/Berrocal2007.pdf">Berrocal et al, 2007</a> to illustrate the construction of an <code>ensembleData</code> object.</p>
 <div class="cell">
-
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ensembleData(forecasts = srft[, members], dates = srft$date, :
+initialization time not specified</code></pre>
+</div>
 </div>
 
 

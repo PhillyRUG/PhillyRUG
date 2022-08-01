@@ -1,8 +1,10 @@
 {
-  "hash": "988f75b1e9e980d789838dac9c7811cf",
+  "hash": "8326c9e78f9ae52d109c04eb77cf9de1",
   "result": {
-    "markdown": "---\ntitle: \"Journal Club Notes: Probabilistic Weather Forecasting in R\"\nauthor: \"Cory Cutsail, PhillyRUG\"\neditor: visual\n---\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Journal Club Notes: Probabilistic Weather Forecasting in R\"\nauthor: \"Cory Cutsail, PhillyRUG\"\n---\n\n\nTwo R packages introduced: `ensembleMBA` and `ProbForecastGOP`.\n\n`ensebmbleBMA`:\n\n-   Implements geostatistical output perturbation method\n\n-   Use mixture distributions where components $X \\iff \\text{ensemble members}$\n\n-   $X\\sim D_j$\n\n-   $j\\in\\{\\text{temp,precip,wind speed,...}\\}$\n\n`ProbForecastGOP`:\n\n-   Geostatistical methods to produce prob. forecasts of entire weather fields based on a single numerical forecast on a spatial grid\n\n-   Package removed from CRAN ... we can talk about the math but we'll skip the code discussion\n\nLoading `ensembleBMA`\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n```\nLoading required package: chron\n```\n:::\n:::\n\n\nParameter estimation done via EM (fairly simple algo .. we can pause here but the [Wikipedia article](https://en.wikipedia.org/wiki/Expectation–maximization_algorithm) covers it nicely).\n\nData used for training must be an `ensembleBMA::ensembleData` object. The authors use data from [Berrocal et al, 2007](https://sites.stat.washington.edu/raftery/Research/PDF/Berrocal2007.pdf) to illustrate the construction of an `ensembleData` object.\n\n\n::: {.cell}\n::: {.cell-output .cell-output-stderr}\n```\nWarning in ensembleData(forecasts = srft[, members], dates = srft$date, :\ninitialization time not specified\n```\n:::\n:::\n",
+    "supporting": [
+      "prob_weather_fc_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

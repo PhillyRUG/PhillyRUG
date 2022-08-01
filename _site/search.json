@@ -231,6 +231,13 @@
     "text": "2*2\n\n[1] 4"
   },
   {
+    "objectID": "content/prob_weather_fc.html",
+    "href": "content/prob_weather_fc.html",
+    "title": "Journal Club Notes: Probabilistic Weather Forecasting in R",
+    "section": "",
+    "text": "ensebmbleBMA:\n\nImplements geostatistical output perturbation method\nUse mixture distributions where components \\(X \\iff \\text{ensemble members}\\)\n\\(X\\sim D_j\\)\n\\(j\\in\\{\\text{temp,precip,wind speed,...}\\}\\)\n\nProbForecastGOP:\n\nGeostatistical methods to produce prob. forecasts of entire weather fields based on a single numerical forecast on a spatial grid\nPackage removed from CRAN … we can talk about the math but we’ll skip the code discussion\n\nLoading ensembleBMA\n\n\nLoading required package: chron\n\n\nParameter estimation done via EM (fairly simple algo .. we can pause here but the Wikipedia article covers it nicely).\nData used for training must be an ensembleBMA::ensembleData object. The authors use data from Berrocal et al, 2007 to illustrate the construction of an ensembleData object.\n\n\nWarning in ensembleData(forecasts = srft[, members], dates = srft$date, :\ninitialization time not specified"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Philadelphia R User Group",
