@@ -4,38 +4,11 @@ author: "Cory Cutsail, PhillyRUG"
 editor: visual
 ---
 
-Two R packages introduced: `ensembleMBA` and `ProbForecastGOP`.
-
-`ensebmbleBMA`:
-
--   Implements geostatistical output perturbation method
-
--   Use mixture distributions where components $X \iff \text{ensemble members}$
-
--   $X\sim D_j$
-
--   $j\in\{\text{temp,precip,wind speed,...}\}$
-
-`ProbForecastGOP`:
-
--   Geostatistical methods to produce prob. forecasts of entire weather fields based on a single numerical forecast on a spatial grid
-
--   Package removed from CRAN ... we can talk about the math but we'll skip the code discussion
-
-Loading `ensembleBMA`
-
-```{r echo=F, eval=F}
-#install.packages('ensembleBMA')
+```{r chunk1, echo=F, eval=F}
 library('ensembleBMA')
-# install.packages('ProbForecastGOP')
-# library('ProbForecastGOP')
 ```
 
-Parameter estimation done via EM (fairly simple algo .. we can pause here but the [Wikipedia article](https://en.wikipedia.org/wiki/Expectation–maximization_algorithm) covers it nicely).
-
-Data used for training must be an `ensembleBMA::ensembleData` object. The authors use data from [Berrocal et al, 2007](https://sites.stat.washington.edu/raftery/Research/PDF/Berrocal2007.pdf) to illustrate the construction of an `ensembleData` object.
-
-```{r echo=F, eval=F}
+```{r chunk2, echo=F, eval=F}
 data(srft)
 members <- c("CMCG", "ETA", "GASP", "GFS",
              "JMA", "NGPS", "TCWB", "UKMO")
@@ -47,4 +20,3 @@ srftData <-
     longitude = srft$lon,
     forecastHour = 48)
 ```
-

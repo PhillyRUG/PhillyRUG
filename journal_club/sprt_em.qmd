@@ -3,3 +3,7 @@ title: "JC: Probabilistic Weather Forecasting Supplemental - EM"
 author: "Cory Cutsail, PhillyRUG"
 editor: visual
 ---
+
+```{r new_chunk, echo = T}
+    2*2
+```
