@@ -30,11 +30,11 @@ website:
     contents:
       - href: "index.qmd"
         text: Welcome
-      - href: 'content/discord/discord.qmd'
+      - href: 'content/discord.qmd'
         text: Discord
       - section: Journal Club
         contents:
-          - content/journal_club/prob_weather_fc.qmd
+          - content/prob_weather_fc.qmd
 
 
 
