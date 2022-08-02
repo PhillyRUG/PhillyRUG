@@ -23,18 +23,18 @@ Two R packages introduced: `ensembleMBA` and `ProbForecastGOP`.
 
 Loading `ensembleBMA`
 
-```{r echo=F, include=T}
-#install.packages('ensembleBMA')
+```{r}
+#|  echo: false
+#|  include:trueT
+# install.packages('ensembleBMA')
 library('ensembleBMA')
-# install.packages('ProbForecastGOP')
-# library('ProbForecastGOP')
 ```
 
 Parameter estimation done via EM (fairly simple algo .. we can pause here but the [Wikipedia article](https://en.wikipedia.org/wiki/Expectation–maximization_algorithm) covers it nicely).
 
 Data used for training must be an `ensembleBMA::ensembleData` object. The authors use data from [Berrocal et al, 2007](https://sites.stat.washington.edu/raftery/Research/PDF/Berrocal2007.pdf) to illustrate the construction of an `ensembleData` object.
 
-```{r echo=F,include=T}
+```{r}
 data(srft)
 members <- c("CMCG", "ETA", "GASP", "GFS",
              "JMA", "NGPS", "TCWB", "UKMO")
