@@ -1,6 +1,3 @@
-# Openscapes Approach Guide
+# PhillyRUG website
 
-A guide for orienting and onboarding to the Openscapes approach.
-
-<https://openscapes.org/approach-guide>
-
+A website for hosting information and discussions led by the Philadelphia R User Group
