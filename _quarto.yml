@@ -32,6 +32,9 @@ website:
         text: Welcome
       - href: 'content/discord.qmd'
         text: Discord
+      - section: Tidy Tuesday
+        contents:
+          - content/tt20220809.qmd
       - section: Journal Club
         contents:
           - content/prob_weather_fc.qmd

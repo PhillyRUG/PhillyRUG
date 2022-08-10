@@ -1,0 +1,166 @@
+---
+title: "#TidyTuesday: Ferris Wheels"
+author: "Cory Cutsail, PhillyRUG"
+editor: visual
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidymodels)
+```
+
+We'll start by reading in the data:
+
+```{r load_data}
+#|echo: true
+#|include: true
+#|message: false
+
+wheels <- read.csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-08-09/wheels.csv')
+
+skimr::skim(wheels)
+```
+
+Here's a snip from the Tidy Tuesday Github page outlining the variables included in the dataset:
+
+![](images/paste-3B4D6BF8.png){width="415"}
+
+It could be fun to try to look at the factors determining `ticket_cost_to_ride` -- let's give it a shot. We'll start with a few simple graphs.
+
+```{r}
+ggplot(wheels,aes(x=construction_cost,y=ticket_cost_to_ride,color=climate_controlled)) + geom_point() + stat_smooth(method='lm')
+```
+
+Oof. Looks like we'll need to clean up `ticket_cost_to_ride` and `construction_cost` to make them useful. We'll start with `ticket_cost_to_ride`. It looks like there are semicolons separating what we'll call `cost_types` and hyphens separating the `ticket_cost_to_ride` from the `cost_type` - let's break these out.
+
+```{r}
+wheels |> 
+  filter(!is.na(ticket_cost_to_ride)) |> 
+  select(ticket_cost_to_ride)
+```
+
+So from a quick review - we've got a little over half of the data with a non-null `ticket_cost_to_ride` and the field requires substantial cleaning. In the interest of time, let's look more closely at the `construction_cost` field as it is a bit cleaner.
+
+```{r}
+wheels |> 
+  count(construction_cost!='Unknown')
+```
+
+Here we're looking at a situation where a little under half of our data is usable (instead of NA's, we now have 'unknown's. Let's build up a model of construction costs and see what it'd imply for this 'unknown' subset.
+
+```{r}
+wheels |> 
+  filter(construction_cost!='Unknown') |> 
+  select(construction_cost) |> 
+  mutate(cons_cost_str_len = stringr::str_length(construction_cost)) |>
+  arrange(desc(cons_cost_str_len))
+```
+
+Of the 33 usable records, one is given a range. We'll manually recode that one to a midpoint value (eg, \$700M). All values are given in millions of USD, so to make our lives easier we'll just `separate` out the numeric bit and multiply by `1e6`.
+
+```{r}
+wheels_cons <- wheels |> 
+  filter(construction_cost!='Unknown') |> 
+  mutate(cons_cost_numeric=
+           ifelse(
+             stringr::str_starts(construction_cost,
+                                 'Estimated Between'),
+             700,
+             NA)) |> 
+  tidyr::separate(construction_cost,
+                  into=c('cons_dollars',
+                         'cons_multiplier',
+                         'cons_units'),sep=' ') |> 
+  mutate(cons_cost_numeric=
+           ifelse(
+             is.na(cons_cost_numeric),
+             as.numeric(gsub('\\$','',cons_dollars)),
+             cons_cost_numeric)) |> 
+  select(-one_of(c('cons_dollars','cons_multiplier','cons_units')))
+wheels_cons <- wheels_cons |> 
+  mutate(log_cons_cost_numeric = log(cons_cost_numeric))
+ggplot(wheels_cons,aes(x=diameter,y=cons_cost_numeric)) + geom_point()
+```
+
+Wow we have a lot of missing data! Of our 33 available ferris wheels, we see only 14 have an associated diameter. We'll use `recipes` to impute some of our continuous variables, and use `step_novel` and `step_unknown` to handle missing categorical variables.
+
+Let's stick with a simple linear regression for now.
+
+```{r}
+linear_model <- linear_reg()  |>  set_engine("lm")
+
+wheels_recipe <- 
+  recipe(log_cons_cost_numeric ~ height + 
+           diameter + 
+           seating_capacity + 
+           ride_duration_minutes + 
+           climate_controlled + 
+           vip_area,
+         data = wheels_cons) |> 
+  step_novel(all_nominal_predictors()) |> 
+  step_unknown(all_nominal_predictors()) |> 
+  step_dummy(all_nominal_predictors()) |> 
+  step_dummy(all_nominal_predictors()) |> 
+  step_impute_mean(all_numeric_predictors())
+
+lm_wflow <- 
+  workflow() |>  
+  add_model(linear_model) |> 
+  add_recipe(wheels_recipe)
+
+wheels_cons_baked <- wheels_recipe |> 
+  prep() |> 
+  bake(new_data=NULL)
+
+
+lm_fit <- fit(lm_wflow, wheels_cons)
+
+wheels_cons_res <- predict(lm_fit, 
+                           new_data = wheels_cons |> 
+                             select(-log_cons_cost_numeric))
+
+wheels_cons <- wheels_cons |> 
+  bind_cols(wheels_cons_res) |> 
+  mutate(pred_cons_cost = exp(.pred))
+
+ggplot(wheels_cons,aes(x=cons_cost_numeric,y=pred_cons_cost)) + 
+  geom_point() + 
+   coord_trans("log2")
+
+```
+
+This looks ... pretty bad. Let's take a quick look at some model evaluation metrics and call it a night.
+
+```{r}
+reg_metrics <- metric_set(rmse, rsq, mae)
+reg_metrics(wheels_cons, 
+            truth = cons_cost_numeric, 
+            estimate = pred_cons_cost)
+```
+
+Yikes - our RMSE and MAE imply we're off on average by between \$45 and \$104 million dollars! We have a pretty high R-squared, but there are about a million reasons why this is a bad metric (and why we might want to trust our model *less* if our R-squared is high ... likely some confounders and excluded variables operating through the ones we're including).
+
+Ok - wrapping up, last last thing to do is to take a look at the stuff we had to exclude because it was missing the `construction_cost` variable. How much do we think these guys would cost to build? We'll just throw this into a graph using height as the x-axis variable because it's the only numeric variable besides the index with less than 10 missings.
+
+```{r}
+wheels_missing <- 
+  wheels |> 
+  filter(construction_cost=='Unknown') |> 
+  mutate(log_cons_cost_numeric=0, 
+         status='Forecasted') 
+
+wheels_cons_pred <- predict(lm_fit, 
+                           new_data = wheels_missing |> 
+                             select(-log_cons_cost_numeric))
+wheels_missing <- wheels_missing |>   
+  bind_cols(wheels_cons_pred) |> 
+  mutate(pred_cons_cost = exp(.pred)) |> 
+  # for viz purposes, set the 'cost' to the prediction
+  mutate(cons_cost_numeric = pred_cons_cost)
+  
+ggplot(bind_rows(wheels_missing,
+                 wheels_cons |> mutate(status='Actual')),
+       aes(x=height,y=cons_cost_numeric,color=status)) + geom_point()
+
+```

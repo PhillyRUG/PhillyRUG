@@ -1,63 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.phillyrug.org/ensBMA.html</loc>
+    <lastmod>2022-08-10T00:18:21.463Z</lastmod>
+  </url>
+  <url>
     <loc>https://www.phillyrug.org/LICENSE.html</loc>
-    <lastmod>2022-08-02T00:14:32.914Z</lastmod>
+    <lastmod>2022-08-10T00:18:22.000Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/tooling.html</loc>
-    <lastmod>2022-08-02T00:14:33.374Z</lastmod>
+    <lastmod>2022-08-10T00:18:22.431Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/calendar.html</loc>
-    <lastmod>2022-08-02T00:14:33.762Z</lastmod>
+    <lastmod>2022-08-10T00:18:22.878Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/code-of-conduct.html</loc>
-    <lastmod>2022-08-02T00:14:34.212Z</lastmod>
+    <lastmod>2022-08-10T00:18:23.343Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/index.html</loc>
-    <lastmod>2022-08-02T00:14:34.604Z</lastmod>
+    <lastmod>2022-08-10T00:18:23.793Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/seaside-chats.html</loc>
-    <lastmod>2022-08-02T00:14:34.997Z</lastmod>
+    <lastmod>2022-08-10T00:18:24.216Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/qual-assessment.html</loc>
-    <lastmod>2022-08-02T00:14:35.328Z</lastmod>
+    <lastmod>2022-08-10T00:18:24.575Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/partners.html</loc>
-    <lastmod>2022-08-02T00:14:35.681Z</lastmod>
+    <lastmod>2022-08-10T00:18:24.955Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/onboarding.html</loc>
-    <lastmod>2022-08-02T00:14:36.039Z</lastmod>
+    <lastmod>2022-08-10T00:18:25.368Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/content/sprt_em.html</loc>
-    <lastmod>2022-08-02T00:14:36.598Z</lastmod>
+    <lastmod>2022-08-10T00:18:25.960Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/content/tt20220809.html</loc>
+    <lastmod>2022-08-10T00:18:27.099Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/content/prob_weather_fc.html</loc>
-    <lastmod>2022-08-02T00:14:38.664Z</lastmod>
+    <lastmod>2022-08-10T00:19:00.160Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/content/discord.html</loc>
-    <lastmod>2022-08-02T00:14:39.078Z</lastmod>
+    <lastmod>2022-08-10T00:19:00.531Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/index.html</loc>
-    <lastmod>2022-08-02T00:14:39.420Z</lastmod>
+    <lastmod>2022-08-10T00:19:00.874Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/about.html</loc>
-    <lastmod>2022-08-02T00:14:40.046Z</lastmod>
+    <lastmod>2022-08-10T00:19:01.459Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/sprt_2007.html</loc>
-    <lastmod>2022-08-02T00:14:40.488Z</lastmod>
+    <lastmod>2022-08-10T00:19:01.980Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/tt/tt20220809.html</loc>
+    <lastmod>2022-08-10T00:19:09.099Z</lastmod>
   </url>
 </urlset>

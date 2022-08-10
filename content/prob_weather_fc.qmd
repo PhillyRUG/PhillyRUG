@@ -46,3 +46,10 @@ srftData <-
     longitude = srft$lon,
     forecastHour = 48)
 ```
+
+```{r}
+
+srftFit <-
+  ensembleBMA(srftData, dates = "2004013100",
+    model = "normal", trainingDays = 25)
+```
