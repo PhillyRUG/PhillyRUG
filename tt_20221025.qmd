@@ -5,5 +5,31 @@ editor: visual
 ---
 
 ```{r data-import}
+install.packages("bakeoff")
+library(tidyverse)
+library(bakeoff)
 
+plot_off1 <- bakeoff::ratings %>% 
+  mutate(ep_id = row_number()) %>%
+  select(ep_id, viewers_7day, series, episode)
+
+# create coordinates for labels
+series_labels <- plot_off1 %>% 
+  group_by(series) %>% 
+  summarize(y_position = median(viewers_7day) + 1,
+            x_position = mean(ep_id))
+# make the plot
+ggplot(plot_off1, aes(x = ep_id, y = viewers_7day, fill = factor(series))) +
+  geom_col(alpha = .9) +
+  ggtitle("Series 8 was a Big Setback in Viewers",
+          subtitle= "7-Day Viewers across All Series/Episodes") +
+  geom_text(data = series_labels, aes(label = series,
+                                      x = x_position, 
+                                      y = y_position)) +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.title.x = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) + 
+  scale_fill_bakeoff(guide = "none")
 ```
