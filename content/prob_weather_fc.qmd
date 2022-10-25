@@ -30,6 +30,8 @@ Loading `ensembleBMA`
 library('ensembleBMA')
 ```
 
+
+
 Parameter estimation done via EM (fairly simple algo .. we can pause here but the [Wikipedia article](https://en.wikipedia.org/wiki/Expectation–maximization_algorithm) covers it nicely).
 
 Data used for training must be an `ensembleBMA::ensembleData` object. The authors use data from [Berrocal et al, 2007](https://sites.stat.washington.edu/raftery/Research/PDF/Berrocal2007.pdf) to illustrate the construction of an `ensembleData` object.
