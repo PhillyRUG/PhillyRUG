@@ -1,7 +1,0 @@
----
-title: "PhillyRUG Journal Club: Ensemble BMA Approach"
-author: "PhillyRUG, Cory Cutsail"
-editor: visual
----
-
-Notes based on *Fraley et al, 2010, Calibrating Multimodel Forecast Ensembles with Exchangeable and Missing Members Using Bayesian Model Averaging.*
