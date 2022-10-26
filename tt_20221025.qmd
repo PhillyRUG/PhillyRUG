@@ -6,20 +6,21 @@ editor: visual
 
 ```{r data-import}
 #nstall.packages("bakeoff")
-library(tidyverse)
+library(dplyr)
 library(bakeoff)
+library(ggplot2)
 
 ```
 
 ```{r}
 plot_off1 <- bakeoff::ratings %>% 
-  mutate(ep_id = row_number()) %>%
-  select(ep_id, viewers_7day, series, episode)
+  dplyr::mutate(ep_id = row_number()) %>%
+  dplyr::select(ep_id, viewers_7day, series, episode)
 
 # create coordinates for labels
 series_labels <- plot_off1 %>% 
-  group_by(series) %>% 
-  summarize(y_position = median(viewers_7day) + 1,
+  dplyr::group_by(series) %>% 
+  dplyr::summarize(y_position = median(viewers_7day) + 1,
             x_position = mean(ep_id))
 # make the plot
 plot_off1 |> 
