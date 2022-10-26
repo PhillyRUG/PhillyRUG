@@ -1,75 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.phillyrug.org/content/sprt_em.html</loc>
-    <lastmod>2022-08-10T00:21:48.207Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.phillyrug.org/content/tt20220809.html</loc>
-    <lastmod>2022-08-10T00:21:49.667Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.phillyrug.org/content/prob_weather_fc.html</loc>
-    <lastmod>2022-08-10T00:21:50.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.phillyrug.org/content/discord.html</loc>
-    <lastmod>2022-08-10T00:21:50.507Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.phillyrug.org/sprt_2007.html</loc>
-    <lastmod>2022-08-10T00:21:50.851Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.phillyrug.org/tt/tt20220809.html</loc>
-    <lastmod>2022-08-10T00:21:51.563Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.phillyrug.org/approach/tooling.html</loc>
-    <lastmod>2022-08-10T00:21:51.883Z</lastmod>
-  </url>
-  <url>
     <loc>https://www.phillyrug.org/approach/partners.html</loc>
-    <lastmod>2022-08-10T00:21:52.223Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.phillyrug.org/approach/seaside-chats.html</loc>
-    <lastmod>2022-08-10T00:21:52.639Z</lastmod>
+    <lastmod>2022-10-26T17:47:32.412Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/index.html</loc>
-    <lastmod>2022-08-10T00:21:53.027Z</lastmod>
+    <lastmod>2022-10-26T17:47:33.628Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/qual-assessment.html</loc>
-    <lastmod>2022-08-10T00:21:53.383Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.phillyrug.org/approach/onboarding.html</loc>
-    <lastmod>2022-08-10T00:21:53.731Z</lastmod>
+    <lastmod>2022-10-26T17:47:33.980Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/calendar.html</loc>
-    <lastmod>2022-08-10T00:21:54.035Z</lastmod>
+    <lastmod>2022-10-26T17:47:34.332Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/approach/code-of-conduct.html</loc>
-    <lastmod>2022-08-10T00:21:54.427Z</lastmod>
+    <lastmod>2022-10-26T17:47:34.740Z</lastmod>
   </url>
   <url>
-    <loc>https://www.phillyrug.org/LICENSE.html</loc>
-    <lastmod>2022-08-10T00:21:54.771Z</lastmod>
+    <loc>https://www.phillyrug.org/approach/onboarding.html</loc>
+    <lastmod>2022-10-26T17:47:35.120Z</lastmod>
   </url>
   <url>
-    <loc>https://www.phillyrug.org/about.html</loc>
-    <lastmod>2022-08-10T00:21:55.283Z</lastmod>
+    <loc>https://www.phillyrug.org/approach/seaside-chats.html</loc>
+    <lastmod>2022-10-26T17:47:35.532Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/approach/tooling.html</loc>
+    <lastmod>2022-10-26T17:47:35.892Z</lastmod>
   </url>
   <url>
     <loc>https://www.phillyrug.org/index.html</loc>
-    <lastmod>2022-08-10T00:21:55.583Z</lastmod>
+    <lastmod>2022-10-26T17:47:36.268Z</lastmod>
   </url>
   <url>
-    <loc>https://www.phillyrug.org/ensBMA.html</loc>
-    <lastmod>2022-08-10T00:21:55.899Z</lastmod>
+    <loc>https://www.phillyrug.org/sprt_2007.html</loc>
+    <lastmod>2022-10-26T17:47:36.620Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/content/tt20220809.html</loc>
+    <lastmod>2022-10-26T17:47:37.432Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/content/sprt_em.html</loc>
+    <lastmod>2022-10-26T17:47:37.964Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/content/discord.html</loc>
+    <lastmod>2022-10-26T17:47:38.320Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/tt_20221025.html</loc>
+    <lastmod>2022-10-26T17:47:38.912Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/about.html</loc>
+    <lastmod>2022-10-26T17:47:39.460Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/tt/tt20220809.html</loc>
+    <lastmod>2022-10-26T17:47:40.244Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.phillyrug.org/LICENSE.html</loc>
+    <lastmod>2022-10-26T17:47:40.620Z</lastmod>
   </url>
 </urlset>
