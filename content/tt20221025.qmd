@@ -1,5 +1,5 @@
 ---
-title: "Tidy Tuesday - GBBO"
+title: "#TidyTuesday - GBBO"
 author: "Cory Cutsail, PhillyRUG"
 editor: visual
 ---

@@ -27,6 +27,7 @@ website:
     style: "docked"
     search: true
     collapse-level: 2
+    collapsed: true
     contents:
       - href: "index.qmd"
         text: Welcome
@@ -35,9 +36,8 @@ website:
       - section: Tidy Tuesday
         contents:
           - content/tt20220809.qmd
+          - content/tt20221025.qmd
       - section: Journal Club
-        contents:
-          - content/prob_weather_fc.qmd
 
 
 
