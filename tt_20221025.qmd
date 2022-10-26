@@ -5,10 +5,13 @@ editor: visual
 ---
 
 ```{r data-import}
-install.packages("bakeoff")
+#nstall.packages("bakeoff")
 library(tidyverse)
 library(bakeoff)
 
+```
+
+```{r}
 plot_off1 <- bakeoff::ratings %>% 
   mutate(ep_id = row_number()) %>%
   select(ep_id, viewers_7day, series, episode)
@@ -19,17 +22,49 @@ series_labels <- plot_off1 %>%
   summarize(y_position = median(viewers_7day) + 1,
             x_position = mean(ep_id))
 # make the plot
-ggplot(plot_off1, aes(x = ep_id, y = viewers_7day, fill = factor(series))) +
-  geom_col(alpha = .9) +
-  ggtitle("Series 8 was a Big Setback in Viewers",
-          subtitle= "7-Day Viewers across All Series/Episodes") +
-  geom_text(data = series_labels, aes(label = series,
-                                      x = x_position, 
-                                      y = y_position)) +
-  theme(axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.title.x = element_blank(),
-        panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank()) + 
-  scale_fill_bakeoff(guide = "none")
+plot_off1 |> 
+  ggplot(aes(x = ep_id, y = viewers_7day, fill = factor(series))) +
+    geom_col(alpha = .9) +
+    ggtitle("Series 8 was a Big Setback in Viewers",
+            subtitle= "7-Day Viewers across All Series/Episodes") +
+    geom_text(data = series_labels, aes(label = series,
+                                        x = x_position, 
+                                        y = y_position)) +
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.title.x = element_blank(),
+          panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank()) + 
+    scale_fill_bakeoff(guide = "none")
+```
+
+```{r}
+ratings <- bakeoff::ratings
+grouped_ratings <- group_by(ratings,series)
+summarized_ratings <- summarize(grouped_ratings, 
+                                avg_viewers_7day=mean(viewers_7day))
+filtered_summarized_ratings <- filter(summarized_ratings,
+                                      series >= 5 & series <= 10)
+
+filtered_summarized_ratings
+
+
+tidy_filtered_summarized_ratings <- 
+  ratings |>  
+  group_by(series) |> 
+  summarize(avg_viewers_7day=mean(viewers_7day)) |> 
+  filter(series >= 5 & series <= 10)
+  
+tidy_filtered_summarized_ratings == filtered_summarized_ratings
+```
+
+```{r}
+bakeoff::ratings |> group_by(series) |> 
+  summarize(mean_7day = mean(viewers_7day),
+            mean_28day=mean(viewers_28day,na.rm=T),
+            sum_7day=sum(viewers_7day)) |> gt::gt() |> 
+    gt::tab_header(
+        title = "Our Tidy Tuesday Table",
+        subtitle = "GBBO Average Viewership by Season/Series"
+    )
 ```
