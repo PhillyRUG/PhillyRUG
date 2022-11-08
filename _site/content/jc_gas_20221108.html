@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cory Cutsail, PhillyRUG">
+
+<title>Philadelphia R User Group - JC: Downside Risk Evaluation + GAS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">JC: Downside Risk Evaluation + GAS</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../" class="sidebar-logo-link">
+      <img src="../images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.meetup.com/meetup-group-rfxisjyh/" title="PhillyRUG Meetup" class="sidebar-tool px-1"><i class="bi bi-meetup"></i></a>
+    <a href="https://github.com/PhillyRUG/" title="PhillyRUG Github" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="https://twitter.com/PhillyRUG" title="PhillyRUG Twitter" class="sidebar-tool px-1"><i class="bi bi-twitter"></i></a>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Welcome</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/discord.html" class="sidebar-item-text sidebar-link">Discord</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Tidy Tuesday</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/tt20220809.html" class="sidebar-item-text sidebar-link">TidyTuesday: Ferris Wheels</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../content/tt20221025.html" class="sidebar-item-text sidebar-link">TidyTuesday - GBBO</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Journal Club</span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">JC: Downside Risk Evaluation + GAS</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cory Cutsail, PhillyRUG </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>The GAS package was written for Generalized Autoregressive Score models, which include GARCH as a special case. This paper hones in on how to use the package to estimate Value at Risk (VaR) and Expected Shortfall (ES). These are common financial metrics that can be relatively involved to compute. Let’s dive in.</p>
+<p>First, a brief discussion on Value at Risk. An informal definition (per Wikipedia): given a portfolio, a time horizon, and a probability p, the VaR is the maximum possible loss over the time horizon excluding the tail to the left of p.&nbsp;More directly, given a profit and loss distribution <span class="math inline">\(X\)</span>, the p-VaR is the <span class="math inline">\((1-p)\)</span> quantile of <span class="math inline">\(Y:=-X\)</span> &nbsp;</p>
+<p>I find this a little unintuitive — can we just define the p-VaR as the p-quantile of X? Likely not, but a question for the group.</p>
+<p>Ok, how about Expected Shortfall? ES is a similar risk measure, defined at a given level q as the expected return on a portfolio in the worst q% of cases (again, from Wikipedia). This one is a bit funkier mathematically:</p>
+<p><span class="math display">\[ES_\alpha (X) = -\frac{1}{\alpha}\int\limits_0^\alpha VaR_\gamma (X) d\gamma\]</span></p>
+<p>If our VaR distribution is approximately normal (it probably isn’t), the ES might look something like this:</p>
+<p><img src="images/pic.png" class="img-fluid"></p>
+<p>Where the purple shaded region is our ES.&nbsp;</p>
+<p>The plain-English definition is given as the mean loss of portfolio value, given a loss is occurring at or below a given quantile.</p>
+<p>Despite the fact that our VaR likely isn’t normally distributed, the underlying portfolio value may be well-approximated by a normal distribution. My reading is that it is more common in practice to use a t-distribution as they have fatter tails (implying more realistic modeling of potential downside risk). Both the normal and t-distributions have closed form solutions for Expected Shortfall. The normal distribution with mean $\mu$ and variance <span class="math inline">\(\sigma^2\)</span> has <span class="math inline">\(\alpha\)</span>-ES</p>
+<p><span class="math display">\[\mu + \sigma\frac{\varphi(\Phi^{-1}(\alpha))}{1-\alpha}\]</span></p>
+<p>We see that ES is monotonically increasing in the variance and monotonically decreasing in the mean.&nbsp;</p>
+<p>The dynamics in <span class="math inline">\(\alpha\)</span> are a bit more interesting. Discussion point: what should they look like for this special case? Keep in mind that alpha is on the unit interval.</p>
+<p>Now that we’ve covered the fundamentals of what we’d like to estimate, how do we go about estimating it? Note that for both risk measures, we need a notion of the underlying density. We don’t necessarily want to assume normality here: this is where Generalized Autoregressive Score models come into play. Here we’ll use Siem Jan Koopman’s AENORM article ‘Generalized Autoregressive Score Models’.&nbsp;</p>
+<p>Let’s start with the building blocks.</p>
+<p>We have a dependent variable <span class="math inline">\(y_t\)</span> Nx1, a parameter vector <span class="math inline">\(f_t\)</span>, and a vector of (exogenous) covariates <span class="math inline">\(x_t\)</span> . The available information at time t is given by <span class="math inline">\(\{f_t, \mathcal{F}_t \}\)</span></p>
+<p>Where <span class="math display">\[\mathcal{F}_t = \{\{ y_1,...,y_t\},\{f_0,...,f_{t-1}\},\{x_1,...,x_t\}\}\]</span></p>
+<p>and that <span class="math display">\[y_t\sim p(y_t|f_t\mathcal{F}_t)\]</span></p>
+<p>We also have a vector of static parameters <span class="math inline">\(\theta\)</span></p>
+<p>Our time-t parameter is updated via&nbsp;</p>
+<p><span class="math display">\[ f_{t+1} = \omega + \sum\limits_{i=1}^p A_i s_{t-i+1} + \sum\limits_{j=1}^q B_j f_{t-j+1}&nbsp; \]</span></p>
+<p>The omega here is a vector of constants, A and B are coefficient matrices, and s is some (appropriately selected) function of historical data. Koopman refers to this as the familiar autoregressive updating equation -- if it isn’t familiar at this juncture, it might be when we show that GARCH models are a special case of GAS models. The omega and the coefficient matrices here are all functions of our static parameter vector theta.</p>
+<p>The update equation is where the Score part of Generalized Autoregressive Score models come into play. We have an update equation for our $f_t$ given by <span class="math inline">\(s_t = S_t \cdot\nabla_t\)</span> with <span class="math display">\[ \nabla_t = \frac{\partial \ln p(y_t | f_t,\mathcal{F}_t; \theta)}{\partial f_t}&nbsp; \]</span> , <span class="math display">\[S_t = S(t,f_t,\mathcal{F}_t;\theta)\]</span> where S is a ‘matrix function’. We get to pick it! It simply scales the score.</p>
+<p>If we choose S to be <span class="math display">\[S_t = \mathcal{I}^{-1}_{t|t-1}, \mathcal{I_{t|t-1}} = \mathbb{E}[\nabla_t\nabla_t']\]</span> and are clever in the remainder of our model specification, we’ll end up with the GARCH model. Aside: if I remember correctly, this S is the Fisher information matrix.</p>
+<p>Onto the GARCH model: assume <span class="math inline">\(y_t=\sigma_t\varepsilon_t\)</span> where epsilon is iid Gaussian with zero mean and unit variance. Koopman lays out as an exercise to show that the GAS(1,1) model reduces to</p>
+<p><span class="math display">\[f_{t+1} = \omega + A_1(y_t^2-f_t) + B_1f_t = \alpha_0 + \alpha_1 y_t^2 + \beta_1 f_t\]</span></p>
+<p>I don’t have time for this exercise at the moment but it could yield interesting discussion. Note that this equation is the familiar GARCH(1,1), and that GAS(1,1) = GAS(p=1,q=1) where p and q are the order of the initial autoregressive update equation.</p>
+<p>Ok, so we’ve covered the basics of GAS models, VaR, and ES. Let’s get into the paper we want to talk about: Downside Risk Evaluation with the R Package GAS. We’ll change our notation up a bit at this juncture to keep consistent with the paper. Namely,&nbsp;</p>
+<p><span class="math display">\[y_t\sim p(y_t|f_t\mathcal{F}_t) \mapsto r_t | \mathcal{I_{t-1}} \sim \mathcal{SKST}(r_t;\mu,\sigma_t,\xi,\nu) \]</span></p>
+<p>Note that the only time-varying parameter here is the scale/volatility parameter $\sigma_t$. The location parameter, mu, and the skewness and shape parameters xi and nu are time-invariant.</p>
+<p>From here, the authors go on to derive the update equation and note that both a Gaussian and Student-t distribution are special cases of the SKST distribution with appprpriate assumptions on the skewness and shape parameters. We’ll gloss over this bit for now.</p>
+<p>The objective here is to backtest VaR and ES models. The authors describe two approaches to backtesting VaR:</p>
+<ul>
+<li><p>“Unconditional Coverage tests look at the ratio between the number of realized VaR violations observed from the data and the expected number of VaR violations implied by the chosen risk level, α, during the forecast period”</p></li>
+<li><p>Conditional Coverage tests examine the distribution of VaR exceedences/violations: if correct conditional coverage is attained, these should be independently distributed over time.</p></li>
+</ul>
+<p>They then specify a DQ test that’s ultimately a Wald test on the joint hypothesis that the ‘hitting series’ (VaR exceedences) has zero coefficients for all lags of appropriate order, as do the lagged coefficients on VaR in the same equation. This test is asymptotically <span class="math inline">\(\chi^2(L+2)\)</span>, and the original paper outlining the test suggest lag-order 4. I am guessing this depends on the underlying frequency of the data, but the authors note that this has become a standard assumption.</p>
+<p>The authors go on to discuss model comparison - we’ll skip this for now but it does have practical implications in terms of the ultimately selected model.</p>
+<p>We’ll also omit discussion of joint VaR and ES comparison as it depends on the quantile loss function established in the prior section. We’ll hit on it when running their empirical analysis … Now!</p>
+<p>We’ll follow along with the paper directly moving forward, starting by loading in data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GAS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'GAS'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    residuals</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"dji30ret"</span>, <span class="at">package =</span> <span class="st">"GAS"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>dji30ret <span class="ot">&lt;-</span> <span class="fu">tail</span>(dji30ret, <span class="dv">2500</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>dji30ret_plt <span class="ot">&lt;-</span> dji30ret</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>dji30ret_plt<span class="sc">$</span>dt <span class="ot">&lt;-</span> <span class="fu">row.names</span>(dji30ret_plt)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>dji30ret_plt <span class="sc">|&gt;</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span><span class="fu">c</span>(dt)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dt=</span><span class="fu">as.Date</span>(dt)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>dt,<span class="at">y=</span>value)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>) <span class="sc">+</span> </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">breaks=</span><span class="st">'1 year'</span>) <span class="sc">+</span> </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="jc_gas_20221108_files/figure-html/data-load-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Next, we’ll specify univariate GAS models with underlying normal, student-T and skewed student-T distributions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>GASSpec_N <span class="ot">&lt;-</span> <span class="fu">UniGASSpec</span>(<span class="at">Dist =</span> <span class="st">"norm"</span>, <span class="at">GASPar =</span> <span class="fu">list</span>(<span class="at">scale =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>GASSpec_ST <span class="ot">&lt;-</span> <span class="fu">UniGASSpec</span>(<span class="at">Dist =</span> <span class="st">"std"</span>, <span class="at">GASPar =</span> <span class="fu">list</span>(<span class="at">scale =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>GASSpec_SKST <span class="ot">&lt;-</span> <span class="fu">UniGASSpec</span>(<span class="at">Dist =</span> <span class="st">"sstd"</span>, <span class="at">GASPar =</span> <span class="fu">list</span>(<span class="at">scale =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>cluster <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(<span class="dv">2</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>H <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Roll_N <span class="ot">&lt;-</span> <span class="fu">UniGASRoll</span>(dji30ret[, <span class="st">"GE"</span>], GASSpec_N, <span class="at">RefitEvery =</span> <span class="dv">5</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">cluster =</span> cluster, <span class="at">ForecastLength =</span> H)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>VaR_N <span class="ot">&lt;-</span> <span class="fu">quantile</span>(Roll_N, <span class="at">probs =</span> alpha)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>ES_N <span class="ot">&lt;-</span> <span class="fu">ES</span>(Roll_N, <span class="at">probs =</span> alpha)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>VaRBacktest_N <span class="ot">&lt;-</span> <span class="fu">BacktestVaR</span>(<span class="at">data =</span> <span class="fu">tail</span>(dji30ret[, <span class="st">"GE"</span>], H), <span class="at">VaR =</span> VaR_N, <span class="at">alpha =</span> alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>FZL <span class="ot">&lt;-</span> <span class="fu">FZLoss</span>(<span class="at">data =</span> <span class="fu">tail</span>(dji30ret[, <span class="st">"GE"</span>], H), <span class="at">VaR =</span> VaR_N, <span class="at">ES =</span> ES_N,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© CC-By Philadelphia R User Group Organizers, Cory Cutsail &amp; Bomi Hong (2022).</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>
