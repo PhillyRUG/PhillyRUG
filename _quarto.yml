@@ -38,6 +38,8 @@ website:
           - content/tt20220809.qmd
           - content/tt20221025.qmd
       - section: Journal Club
+        contents:
+          - content/jc_gas_20221108.qmd
 
 
 
