@@ -58,5 +58,15 @@ ggplot(programming_languages %>% filter(log(number_of_users) > 0), aes(x = log(n
 ```
 
 ```{r eda-variables-of-interest}
-GGally::ggpairs(programming_languages %>% select(language_rank, appeared, book_count, log_number_of_users, number_of_jobs))
+GGally::ggpairs(programming_languages %>% 
+                  mutate(log_number_of_jobs = log(number_of_jobs),
+                         log_book_count = log(book_count)) %>% 
+                  select(language_rank, appeared, log_book_count, log_number_of_users, log_number_of_jobs))
+```
+
+
+```{r recipe}
+### Build out the 'recipe' above using recipes
+### Build out the model using parsnip
+### 'Train', evaluate, compare against alternative models
 ```
