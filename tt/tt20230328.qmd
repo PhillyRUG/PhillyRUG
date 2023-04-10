@@ -1,0 +1,72 @@
+---
+title: "tt_20230328"
+format:
+  html:
+    theme: default
+---
+
+```{r startup}
+library(dplyr)
+library(lubridate)
+library(tidymodels)
+library(ggplot2)
+tidymodels::tidymodels_prefer()
+```
+
+```{r import-data}
+path <- 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-03-21/languages.csv'
+alt_path <- 'https://pldb.com/languages.csv'
+languages <- readr::read_csv(path)
+languages_full <- readr::read_csv(alt_path)
+
+```
+
+```{r skim}
+skimr::skim(languages)
+```
+
+```{r plot-rank-by-creation-year}
+ggplot(languages %>% filter(language_rank < 25), aes(x = appeared, y = language_rank, label = title)) + geom_text() + theme_minimal() + geom_smooth(method = 'lm', se = F)
+```
+
+```{r language-data-eval}
+languages  %>% mutate(pctile = language_rank / max(language_rank)) %>% filter(appeared==-2000) %>% select(pctile)
+
+languages  %>% filter(language_rank < 25) %>% select(title, type, book_count, number_of_users, number_of_jobs)
+
+languages %>% count(type) %>% arrange(desc(n))
+```
+
+```{r pl-eval}
+
+programming_languages <- languages %>% 
+  filter(type == 'pl',
+         log(number_of_users) >= 0) %>% 
+  mutate(f_language_rank = as.factor(language_rank),
+         f_appeared = as.factor(appeared),
+         log_number_of_users = log(number_of_users))
+  
+
+df_coef <- summary(lm(f_language_rank ~ appeared + book_count + number_of_users + number_of_jobs, programming_languages)) 
+
+summary(lm(language_rank ~ appeared + book_count + log(number_of_users) + number_of_jobs, programming_languages))
+```
+
+```{r eda-number-of-users}
+ggplot(programming_languages %>% filter(log(number_of_users) > 0), aes(x = log(number_of_users), y = language_rank )) + geom_point()
+
+```
+
+```{r eda-variables-of-interest}
+GGally::ggpairs(programming_languages %>% 
+                  mutate(log_number_of_jobs = log(number_of_jobs),
+                         log_book_count = log(book_count)) %>% 
+                  select(language_rank, appeared, log_book_count, log_number_of_users, log_number_of_jobs))
+```
+
+
+```{r recipe}
+### Build out the 'recipe' above using recipes
+### Build out the model using parsnip
+### 'Train', evaluate, compare against alternative models
+```
